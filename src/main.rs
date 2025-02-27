@@ -44,10 +44,10 @@ impl Player {
             self.position[1] = (self.position[1] - move_amount).max(-half_height + triangle_half_size);
         }
         if pressed_keys.contains(&Key::A) {
-            self.position[0] = (self.position[0] + move_amount).min(half_width - triangle_half_size);
+            self.position[0] = (self.position[0] - move_amount).min(half_width - triangle_half_size);
         }
         if pressed_keys.contains(&Key::D) {
-            self.position[0] = (self.position[0] - move_amount).max(-half_width + triangle_half_size);
+            self.position[0] = (self.position[0] + move_amount).max(-half_width + triangle_half_size);
         }
         if pressed_keys.contains(&Key::Q) {
             self.rotation -= rotate_speed;
@@ -111,6 +111,9 @@ impl App {
     }
 
     fn handle_key_press(&mut self, key: Key) {
+        if key == Key::M{
+            self.exit = true;
+        }
         self.pressed_keys.insert(key);
     }
 
